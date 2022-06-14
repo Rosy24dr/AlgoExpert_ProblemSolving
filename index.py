@@ -46,3 +46,17 @@ def validateSubsequence(array, sequence):
         if sequence[seqIdx] == value:
             seqIdx += 1
     return seqIdx == len(sequence)
+
+#Problem No. 3 
+
+
+def sortedSquaredArray(array):
+    squares = [0 for _ in array]
+    
+    for num in range(len(array)):
+        value = array[num]
+        squares[num] = value * value
+
+    squares.sort()
+    return squares
+
