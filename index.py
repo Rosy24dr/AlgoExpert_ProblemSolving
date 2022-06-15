@@ -49,7 +49,7 @@ def validateSubsequence(array, sequence):
 
 #Problem No. 3 
 
-
+# O(nlogn) time | o(n) space
 def sortedSquaredArray(array):
     squares = [0 for _ in array]
     
@@ -60,3 +60,30 @@ def sortedSquaredArray(array):
     squares.sort()
     return squares
 
+# Problem No. 4
+
+HOME_TEAM_WON = 1
+
+def tournamentWinner(competitions, results):
+    currentBeastTeam = ""
+    scores= {currentBeastTeam: 0}
+
+
+    for idx, competition in enumerate(competitions):
+        result = results[idx]
+        homeTeam, awayTeam = competition
+
+        winningTeam = homeTeam if result == HOME_TEAM_WON else awayTeam
+
+        updateScores(winningTeam, 3, scores)
+
+        if scores[winningTeam] > scores[currentBestTeam]:
+            currentBestTeam = 
+            
+     return currentBestTeam
+
+def updateScores(team, points, scores):
+    if team not in scores:
+        scores[team] = 0 
+
+    scores[team] += points
