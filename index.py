@@ -67,28 +67,26 @@ def sortedSquaredArray(array):
 # Problem No. 4
 
 
-HOME_TEAM_WON = 1
-
-
 def tournamentWinner(competitions, results):
-    currentBeastTeam = ""
-    scores = {currentBeastTeam: 0}
-
-    for idx, competition in enumerate(competitions):
-        result = results[idx]
-        homeTeam, awayTeam = competition
-
-        winningTeam = homeTeam if result == HOME_TEAM_WON else awayTeam
-
-        updateScores(winningTeam, 3, scores)
-
-        if scores[winningTeam] > scores[currentBestTeam]:
-            currentBestTeam = winningTeam
-
-    return currentBestTeam
-
-def updateScores(team, points, scores):
-    if team not in scores:
-        scores[team] = 0 
-
-    scores[team] += points
+    teams = {"": 0}
+	i = 0
+	currentBestTeam = ""
+	while i < len(competitions):
+		homeTeam = str(competitions[i][0])
+		awayTeam = str(competitions[i][1])
+		if results[i] == 1:
+			if homeTeam in teams:
+				teams[homeTeam] += 3
+			else:
+				teams[homeTeam] = 3
+			currentBestTeam = homeTeam if teams[currentBestTeam] < teams[homeTeam] else currentBestTeam
+				
+		else:
+			if awayTeam in teams:
+				teams[awayTeam] += 3
+			else:
+				teams[awayTeam] = 3
+			currentBestTeam = awayTeam if teams[currentBestTeam] < teams[awayTeam] else currentBestTeam
+		i += 1
+	
+	return currentBestTeam
