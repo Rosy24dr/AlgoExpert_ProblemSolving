@@ -7,9 +7,9 @@ targetResult = 10
 
 def twoNumberSum(array, targetSum):
     for i in range(len(array) - 1):
-    	  for j in range(i + 1, len(array)):
-              if array[i] + array[j] == targetSum:
-                  return [array[i], array[j]]
+        for j in range(i + 1, len(array)):
+            if array[i] + array[j] == targetSum:
+                return [array[i], array[j]]
     return []
 
 
@@ -69,24 +69,36 @@ def sortedSquaredArray(array):
 
 def tournamentWinner(competitions, results):
     teams = {"": 0}
-	i = 0
-	currentBestTeam = ""
-	while i < len(competitions):
-		homeTeam = str(competitions[i][0])
-		awayTeam = str(competitions[i][1])
-		if results[i] == 1:
-			if homeTeam in teams:
-				teams[homeTeam] += 3
-			else:
-				teams[homeTeam] = 3
-			currentBestTeam = homeTeam if teams[currentBestTeam] < teams[homeTeam] else currentBestTeam
-				
-		else:
-			if awayTeam in teams:
-				teams[awayTeam] += 3
-			else:
-				teams[awayTeam] = 3
-			currentBestTeam = awayTeam if teams[currentBestTeam] < teams[awayTeam] else currentBestTeam
-		i += 1
-	
-	return currentBestTeam
+    i = 0
+    currentBestTeam = ""
+    while i < len(competitions):
+        homeTeam = str(competitions[i][0])
+        awayTeam = str(competitions[i][1])
+        if results[i] == 1:
+            if homeTeam in teams:
+                teams[homeTeam] += 3
+            else:
+                teams[homeTeam] = 3
+                currentBestTeam = homeTeam if teams[currentBestTeam] < teams[homeTeam] else currentBestTeam
+
+        else:
+            if awayTeam in teams:
+                teams[awayTeam] += 3
+            else:
+                teams[awayTeam] = 3
+            currentBestTeam = awayTeam if teams[currentBestTeam] < teams[awayTeam] else currentBestTeam
+        i += 1
+
+    return currentBestTeam
+
+# Problem No. 5
+
+
+def nonConstructibleChange(coins):
+    coins.sort()
+    minimum_change = 0
+    for coin in coins:
+        if coin > minimum_change + 1:
+            break
+        minimum_change += coin
+    return minimum_change + 1
