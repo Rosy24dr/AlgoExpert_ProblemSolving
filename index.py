@@ -102,3 +102,23 @@ def nonConstructibleChange(coins):
             break
         minimum_change += coin
     return minimum_change + 1
+
+#Problem No. 6
+
+def findClosestValueInBst(tree, target, closest = None):
+    if tree is None:
+        return closest
+    if closest is None or abs(target - closest) > abs(target - tree.value):
+            closest = tree.value
+    if target < tree.value:
+        return findClosestValueInBst(tree.left, target, closest)
+    elif target > tree.value:
+        return findClosestValueInBst(tree.right, target, closest)
+    else:
+        return closest
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
