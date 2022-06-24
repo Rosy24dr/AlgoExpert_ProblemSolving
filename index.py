@@ -122,3 +122,30 @@ class BST:
         self.value = value
         self.left = None
         self.right = None
+
+
+#Problem No. 7
+
+# This is the class of the input root. Do not edit it.
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def branchSums(root):
+    stack = [(root, 0)]
+    branchSumValues = []
+    while len(stack) > 0:
+        current, sumValue = stack.pop()
+        if current.left is None and current.right is None:
+            branchSumValues.append(sumValue+current.value)
+
+        if current.left is not None:
+            stack.append((current.left, sumValue+current.value))
+        if current.right is not None:
+            stack.append((current.right, sumValue+current.value))
+            
+    branchSumValues.reverse()
+    return branchSumValues
