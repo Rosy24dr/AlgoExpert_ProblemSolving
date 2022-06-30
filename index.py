@@ -149,3 +149,35 @@ def branchSums(root):
             
     branchSumValues.reverse()
     return branchSumValues
+
+
+
+#Problem No. 8
+
+def nodeDepths(root):
+    stack = [root]
+    node_depth_sum = [0]
+
+    output = 0
+
+    while len(stack) > 0:
+        curr_node = stack.pop()
+        curr_sum = node_depth_sum.pop()
+        output += curr_sum
+
+        if curr_node.right is not None:
+           stack.append(curr_node.right)
+           node_depth_sum.append(curr_sum + 1)
+
+        if curr_node.left is not None:
+           stack.append(curr_node.left)
+           node_depth_sum.append(curr_sum + 1)
+    return output
+
+
+
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
